@@ -1,0 +1,12 @@
+
+r	java:S117"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(˜Šîâÿÿÿÿÿ8½¶´ö1
+r	java:S117"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(˜Šîâÿÿÿÿÿ8¾¶´ö1
+m	java:S117"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(˜…¬8¿¶´ö1
+m	java:S117"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(˜…¬8¿¶´ö1
+m	java:S117"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(˜…¬8¿¶´ö1
+œ	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(¢œ‹‚8ş¹ğ¸õ1J$0ee9814d-e496-41ec-9f19-af6e67297eec
+Ÿ	java:S116
+"XRename this field "habitacion_id" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(–¿ãîûÿÿÿÿ8ºğ¸õ1J$6cfe18aa-0f73-4009-91cd-42c4c3ea85c1
+£	java:S116"\Rename this field "numero_habitacion" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(»˜ãŠûÿÿÿÿ8ºğ¸õ1J$7efcf727-a5b7-4661-9332-1ba874f0c393
+š	java:S116"SRename this field "hotel_id" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(òˆïüşÿÿÿÿ8ºğ¸õ1J$d0b7265c-1cdb-4167-a578-f210f14214a5
+]	java:S107"AConstructor has 8 parameters, which is greater than 7 authorized.(˜…¬8Å¶´ö1
