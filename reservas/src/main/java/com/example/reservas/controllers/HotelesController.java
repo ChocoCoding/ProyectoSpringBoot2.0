@@ -1,7 +1,9 @@
 package com.example.reservas.controllers;
 
 
-import com.example.reservas.DTO.HotelDTO;
+import com.example.reservas.DTO.HotelDTO.ActualizarHotelDTO;
+import com.example.reservas.DTO.HotelDTO.CrearHotelDTO;
+import com.example.reservas.DTO.HotelDTO.HotelDTO;
 import com.example.reservas.DTO.UsuarioContrasenhaDTO;
 import com.example.reservas.services.HotelService;
 import lombok.RequiredArgsConstructor;
@@ -21,25 +23,25 @@ public class HotelesController {
 
 
     @PostMapping
-    public ResponseEntity<String> crearHotel(@RequestBody HotelDTO hotelDTO){
-        if (validarUsuario(new UsuarioContrasenhaDTO(hotelDTO.getNombreUsu(),hotelDTO.getContrasena()))){
+    public ResponseEntity<String> crearHotel(@RequestBody CrearHotelDTO crearHotelDTO){
+        if (validarUsuario(new UsuarioContrasenhaDTO(crearHotelDTO.getNombreUsu(),crearHotelDTO.getContrasena()))){
             try {
-                hotelService.guardar(hotelDTO);
-                return ResponseEntity.status(HttpStatus.CREATED).body("Hotel creado con éxito");
+                hotelService.guardar(crearHotelDTO);
+                return ResponseEntity.ok().body("Hotel creado con éxito");
             } catch (Exception e) {
-                return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("No se pudo crear el hotel");
+                return ResponseEntity.ok().body("No se pudo crear el hotel");
             }
         }else return ResponseEntity.ok().body("Usuario o contraseña incorrectos");
 
     }
 
     @PatchMapping()
-    public ResponseEntity<String> actualizarHotel(@RequestBody HotelDTO hotelDTO){
-        if (validarUsuario(new UsuarioContrasenhaDTO(hotelDTO.getNombreUsu(),hotelDTO.getContrasena()))){
-            boolean actualizado = hotelService.update(hotelDTO);
+    public ResponseEntity<String> actualizarHotel(@RequestBody ActualizarHotelDTO actualizarHotelDTO){
+        if (validarUsuario(new UsuarioContrasenhaDTO(actualizarHotelDTO.getNombreUsu(),actualizarHotelDTO.getContrasena()))){
+            boolean actualizado = hotelService.update(actualizarHotelDTO);
             if (actualizado){
                 return ResponseEntity.ok().body("El hotel se ha actualizado con éxito");
-            }else return ResponseEntity.status(HttpStatus.NOT_FOUND).body("No se ha podido actualizar el hotel");
+            }else return ResponseEntity.ok().body("No se ha podido actualizar el hotel");
         }else return ResponseEntity.ok().body("Usuario o contraseña incorrectos");
     }
 

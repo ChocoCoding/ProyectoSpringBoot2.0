@@ -3,10 +3,9 @@ package com.example.comentarios.service;
 import com.example.comentarios.DTO.CrearComentarioDTO;
 import com.example.comentarios.entities.Comentarios;
 import com.example.comentarios.repository.ComentariosRepository;
-import org.bson.types.ObjectId;
+import org.bson.Document;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.graphql.data.method.annotation.MutationMapping;
-import org.springframework.http.ResponseEntity;
+import org.springframework.data.mongodb.core.aggregation.AggregationResults;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -39,14 +38,32 @@ public class ComentariosService {
         return comentariosRepository.findByHotelId(hotelId);
     }
 
-    public void crearComentario(CrearComentarioDTO crearComentarioDTO,Integer hotelId,Integer usuarioId,Boolean checkIdReserva){
+    public void crearComentario(CrearComentarioDTO crearComentarioDTO,Integer hotelId,Integer usuarioId){
         Comentarios comentario = new Comentarios();
         comentario.setUsuarioId(usuarioId);
         comentario.setHotelId(hotelId);
-        comentario.setReservaId(Integer.parseInt(crearComentarioDTO.getReservaId()));
+        comentario.setReservaId(crearComentarioDTO.getReservaId());
         comentario.setPuntuacion(crearComentarioDTO.getPuntuacion());
         comentario.setComentario(crearComentarioDTO.getComentario());
         comentario.setPuntuacion(crearComentarioDTO.getPuntuacion());
         comentariosRepository.save(comentario);
     }
+
+
+    public List<Comentarios> listarComentariosUsuario(Integer usuarioId){
+        return comentariosRepository.findByUsuarioId(usuarioId);
+    }
+
+    public List<Comentarios>  mostrarComentarioUsuarioReserva(Integer usuarioId, Integer reservaID){
+        return comentariosRepository.findByUsuarioIdAndReservaId(usuarioId,reservaID);
+    }
+
+    public Double puntuacionMediaHotel(int idHotel){
+        return comentariosRepository.puntuacionMediaHotel(idHotel).getUniqueMappedResult().getDouble("mediaPuntos");
+    }
+
+    public Double mediaPuntuacionPorUsuario(int idUsuario){
+        return comentariosRepository.puntuacionesMediasUsuario(idUsuario).getUniqueMappedResult().getDouble("mediaPuntos");
+    }
+
 }

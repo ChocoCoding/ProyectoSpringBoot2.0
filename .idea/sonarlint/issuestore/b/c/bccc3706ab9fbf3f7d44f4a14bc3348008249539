@@ -1,0 +1,10 @@
+
+“	java:S117"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Æ—ä«8³‰Õ´÷1J$fac254ed-5411-43b6-a723-ecdfd5d9888f
+—
+java:S2259>"TA "NullPointerException" could be thrown; "getUniqueMappedResult()" can return null.(»°ëë8ıæ¶÷1J$23e9d4b5-4a20-4fad-a3ad-f2ef8b0cd10f
+…
+java:S6813"BRemove this field injection and use constructor injection instead.(êæÄŞ8º‰Õ´÷1J$0c5fa2c3-b6ec-4d17-b98d-5065dd941fc3
+Œ
+java:S1854"DRemove this useless assignment to local variable "listaComentarios".(ÂÇêøÿÿÿÿ8¼‰Õ´÷1J$a9fee817-e239-4baa-9e0b-24705a937e7b
+}
+java:S1481"5Remove this unused "listaComentarios" local variable.(ÂÇêøÿÿÿÿ8¼‰Õ´÷1J$0470df85-86c4-4bbf-a6e2-5bb3b7a87f7b

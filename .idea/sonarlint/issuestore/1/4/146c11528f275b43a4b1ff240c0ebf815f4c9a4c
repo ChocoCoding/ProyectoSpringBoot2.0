@@ -1,0 +1,24 @@
+
+f	java:S117"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ÏÀ•¢
+k	java:S117#"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(şğ€–ıÿÿÿÿ
+k	java:S117#"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(şğ€–ıÿÿÿÿ
+k	java:S117#"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(şğ€–ıÿÿÿÿ
+f	java:S117-"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ÿÇâõ
+f	java:S117-"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ÿÇâõ
+f	java:S117-"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ÿÇâõ
+f	java:S117-"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ÿÇâõ
+f	java:S117-"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ÿÇâõ
+o	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(ªÁÑÆ
+o	java:S116"URename this field "reserva_id" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Üú»ûÿÿÿÿ
+j	java:S116"URename this field "usuario_id" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(®²Å‡
+r	java:S116"XRename this field "habitacion_id" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(‘‘å–şÿÿÿÿ
+l	java:S116"WRename this field "fecha_inicio" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ßƒşÑ
+i	java:S116"TRename this field "fecha_fin" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(õ£¨
+V	java:S107-"AConstructor has 8 parameters, which is greater than 7 authorized.(ÿÇâõ
+K
+java:S1128"0Remove this unused import 'jakarta.persistence'.(Î«Ô§úÿÿÿÿ
+F
+java:S1128"+Remove this unused import 'lombok.NonNull'.(¦¸©—ıÿÿÿÿ
+K
+java:S1128
+"0Remove this unused import 'java.time.LocalDate'.(›‘¬èıÿÿÿÿ

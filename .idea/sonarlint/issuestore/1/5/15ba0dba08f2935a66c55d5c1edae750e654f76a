@@ -1,0 +1,6 @@
+
+h	java:S116"NRename this field "_id" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(í—ø¨ıÿÿÿÿ
+O
+java:S1128"4Remove this unused import 'org.bson.types.ObjectId'.(Ü¡‰çıÿÿÿÿ
+G
+java:S1128"1Remove this unused import 'java.math.BigDecimal'.(êêŠ

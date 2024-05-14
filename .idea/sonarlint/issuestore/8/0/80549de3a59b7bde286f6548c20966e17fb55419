@@ -1,0 +1,8 @@
+
+š	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(ÔÅîÉıÿÿÿÿJ$38c92a2a-4b99-42b0-a3c7-3ddfb23b83ac
+b
+java:S1128"ERemove this unused import 'com.example.reservas.entities.Habitacion'.(Ùã±õ8à• »÷1
+M
+java:S1128"0Remove this unused import 'java.util.ArrayList'.(÷‰îƒ8à• »÷1
+M
+java:S1128"+Remove this unused import 'java.util.List'.(Õë±Äøÿÿÿÿ8à• »÷1

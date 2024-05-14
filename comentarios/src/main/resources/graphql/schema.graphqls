@@ -1,14 +1,17 @@
 type Mutation{
-    crearComentario(crearComentario : CrearComentarioInput!): CrearComentarioDTO,
+    crearComentario(crearComentarioDTO : CrearComentarioDTO2!): CrearComentarioDTO,
     eliminarComentarios : String,
     eliminarComentarioDeUsuario(usuarioContrasenhaDTO: UsuarioContrasenhaDTO,  _id: String!): String}
 
 type Query{
-    listarComentariosHotel(usuarioContrasenhaDTO: UsuarioContrasenhaDTO,nombreHotel:String): [listarComentariosHotel]
-
+    listarComentariosHotel(usuarioContrasenhaDTO: UsuarioContrasenhaDTO,nombreHotel:String): [ListarComentariosHotel],
+    listarComentariosUsuario(usuarioContrasenhaDTO: UsuarioContrasenhaDTO):[ListarComentariosHotel]
+    mostrarComentarioUsuarioReserva(usuarioContrasenhaDTO: UsuarioContrasenhaDTO,reservaId:Int):[ListarComentariosHotel]
+    puntuacionMediaHotel(usuarioContrasenhaDTO: UsuarioContrasenhaDTO,nombreHotel:String): Float,
+    puntuacionesMediasUsuario(usuarioContrasenhaDTO:UsuarioContrasenhaDTO): Float
 }
 
-type listarComentariosHotel {
+type ListarComentariosHotel {
     nombreHotel: String
     reservaId: String
     puntuacion: Float
@@ -24,16 +27,16 @@ type CrearComentarioDTO {
     nombre: String,
     contrasena : String,
     nombreHotel : String,
-    reservaId: String,
+    reservaId: Int,
     puntuacion: Float,
     comentario : String
 }
 
-input CrearComentarioInput {
+input CrearComentarioDTO2 {
     nombre: String,
     contrasena : String,
     nombreHotel : String,
-    reservaId: String,
+    reservaId: Int,
     puntuacion: Float,
     comentario : String
 }

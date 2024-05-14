@@ -1,7 +1,9 @@
 package com.example.reservas.controllers;
 
-import com.example.reservas.DTO.DelvolverReservaDTO;
-import com.example.reservas.DTO.ReservaDTO;
+import com.example.reservas.DTO.ReservasDTO.CambiarEstadoDTO;
+import com.example.reservas.DTO.ReservasDTO.CrearReserva;
+import com.example.reservas.DTO.ReservasDTO.DevolverReservaDTO;
+import com.example.reservas.DTO.ReservasDTO.ReservaDTO;
 import com.example.reservas.DTO.UsuarioContrasenhaDTO;
 import com.example.reservas.services.ReservaService;
 import lombok.RequiredArgsConstructor;
@@ -18,58 +20,59 @@ import java.util.List;
 public class ReservasController {
 
     private final String URLUSUARIO = "http://localhost:8702/usuarios";
+
     @Autowired
     private final ReservaService reservaService;
 
     @PostMapping
-    public ResponseEntity<String> crearReserva(@RequestBody ReservaDTO reservaDTO) {
-        if (validarUsuario(new UsuarioContrasenhaDTO(reservaDTO.getNombre(),reservaDTO.getContrasena()))){
-            boolean creada = reservaService.guardar(reservaDTO);
-            if (creada){
-                return ResponseEntity.ok().body("La reserva se ha creado con éxito");
-            }else return ResponseEntity.status(HttpStatus.NOT_FOUND).body("No se ha podido realizar la reserva");
+    public ResponseEntity<String> crearReserva(@RequestBody CrearReserva crearReserva) {
+        if (validarUsuario(new UsuarioContrasenhaDTO(crearReserva.getNombre(),crearReserva.getContrasena()))){
+            Integer usuarioId = obtenerIdUsuario(new UsuarioContrasenhaDTO(crearReserva.getNombre(),crearReserva.getContrasena()));
+                boolean creada = reservaService.guardar(crearReserva,usuarioId);
+                if (creada){
+                    return ResponseEntity.ok().body("La reserva se ha creado con éxito");
+                }else return ResponseEntity.ok().body("La reserva no se ha podido crear");
         }else return ResponseEntity.ok().body("Usuario o contraseña incorrectos");
     }
 
     @PatchMapping
-    public ResponseEntity<String> cambiarEstado(@RequestBody ReservaDTO reservaDTO){
-        if (validarUsuario(new UsuarioContrasenhaDTO(reservaDTO.getNombre(),reservaDTO.getContrasena()))){
-            boolean cambiado = reservaService.updateEstadoById(reservaDTO);
+    public ResponseEntity<String> cambiarEstado(@RequestBody CambiarEstadoDTO cambiarEstadoDTO){
+        if (validarUsuario(new UsuarioContrasenhaDTO(cambiarEstadoDTO.getNombre(),cambiarEstadoDTO.getContrasena()))){
+            boolean cambiado = reservaService.updateEstadoById(cambiarEstadoDTO);
             if (cambiado){
                 return ResponseEntity.ok().body("El estado se ha modificado con éxito");
-            }else return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("No se ha podido realizar la reserva, comprueba el estado introducido");
+            }else return ResponseEntity.ok().body("No se ha podido realizar la reserva, comprueba el estado introducido");
         }else return ResponseEntity.ok().body("Usuario o contraseña incorrectos");
     }
 
-    @GetMapping()
-    public ResponseEntity<List<DelvolverReservaDTO>> listarReservasUsuario(@RequestBody UsuarioContrasenhaDTO usuarioContrasenhaDTO) {
-        Integer idUsuario = Integer.parseInt(obtenerIdUsuario(usuarioContrasenhaDTO));
+    @GetMapping
+    public ResponseEntity<List<DevolverReservaDTO>> listarReservasUsuario(@RequestBody UsuarioContrasenhaDTO usuarioContrasenhaDTO) {
+        Integer idUsuario = obtenerIdUsuario(usuarioContrasenhaDTO);
         if (validarUsuario(usuarioContrasenhaDTO)) {
-            List<DelvolverReservaDTO> delvolverReservaDTO = reservaService.listarReservasUsuario(idUsuario);
+            List<DevolverReservaDTO> delvolverReservaDTO = reservaService.listarReservasUsuario(idUsuario);
             if (!delvolverReservaDTO.isEmpty()) {
                 return ResponseEntity.ok().body(delvolverReservaDTO);
-            } else return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+            } else return null;
         } else return null;
     }
 
     @GetMapping("/{estado}")
-    public ResponseEntity<List<ReservaDTO>> listarReservasSegunEstado(@PathVariable String estado,@RequestBody UsuarioContrasenhaDTO usuarioContrasenhaDTO) {
+    public ResponseEntity<List<DevolverReservaDTO>> listarReservasSegunEstado(@PathVariable String estado,@RequestBody UsuarioContrasenhaDTO usuarioContrasenhaDTO) {
         if (validarUsuario(usuarioContrasenhaDTO)) {
-            List<ReservaDTO> reservasDTO = reservaService.listarReservasSegunEstado(estado).stream()
-                    .map(ReservaDTO::new).toList();
+            List<DevolverReservaDTO> devolverReservaDTO = reservaService.listarReservasSegunEstado(estado).stream()
+                    .map(DevolverReservaDTO::new).toList();
 
-            if (!reservasDTO.isEmpty()) {
-                return ResponseEntity.ok().body(reservasDTO);
-            } else return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+            if (!devolverReservaDTO.isEmpty()) {
+                return ResponseEntity.ok().body(devolverReservaDTO);
+            } else return null;
         } else return null;
     }
 
+    //TODO SOLO FUNCIONA CON LA RESERVA 1 1 1
     @GetMapping("/check/{idUsuario}-{idHotel}-{idReserva}")
     public ResponseEntity<Boolean> checkReserva(@PathVariable("idUsuario") Integer idUsuario,@PathVariable("idHotel") Integer idHotel,@PathVariable("idReserva") Integer idReserva){
         Boolean reservado = reservaService.checkReserva(idUsuario,idHotel,idReserva);
-        if (Boolean.TRUE.equals(reservado)){
-            return ResponseEntity.ok(true);
-        }else return ResponseEntity.status(HttpStatus.NOT_FOUND).body(false);
+        return ResponseEntity.ok(reservado);
     }
 
 
@@ -80,10 +83,10 @@ public class ReservasController {
         return Boolean.TRUE.equals(responseEntity.getBody());
     }
 
-    public String obtenerIdUsuario(UsuarioContrasenhaDTO usuarioContrasenhaDTO){
+    public Integer obtenerIdUsuario(UsuarioContrasenhaDTO usuarioContrasenhaDTO){
         RestTemplate restTemplate = new RestTemplate();
         String urlObtenerInfo = URLUSUARIO + "/info/nombre/{nombre}";
-        ResponseEntity<String> responseEntity = restTemplate.getForEntity(urlObtenerInfo,String.class,usuarioContrasenhaDTO.getNombre());
+        ResponseEntity<Integer> responseEntity = restTemplate.getForEntity(urlObtenerInfo,Integer.class,usuarioContrasenhaDTO.getNombre());
         return responseEntity.getBody();
     }
 

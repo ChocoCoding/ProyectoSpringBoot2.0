@@ -1,12 +1,12 @@
 package com.example.reservas.services;
 
-import com.example.reservas.DTO.HabitacionDTO;
+import com.example.reservas.DTO.HabitacionDTO.ActualizarHabitacionDTO;
+import com.example.reservas.DTO.HabitacionDTO.CrearHabitacionDTO;
 import com.example.reservas.entities.Habitacion;
 import com.example.reservas.entities.Hotel;
 import com.example.reservas.entities.Reserva;
 import com.example.reservas.repositories.HabitacionRepository;
 import com.example.reservas.repositories.HotelRepository;
-import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -19,13 +19,13 @@ public class HabitacionService {
 
     private final HabitacionRepository habitacionRepository;
     private final HotelRepository hotelRepository;
-    public boolean crearHabitacion(HabitacionDTO habitacionDTO){
-        Hotel hotel = hotelRepository.findById(habitacionDTO.getHotel_id()).orElse(null);
+    public boolean crearHabitacion(CrearHabitacionDTO crearHabitacionDTO){
+        Hotel hotel = hotelRepository.findById(crearHabitacionDTO.getHotel_id()).orElse(null);
         if (hotel != null){
             Habitacion habitacion = new Habitacion();
-            habitacion.setNumero_habitacion(habitacionDTO.getNumero_habitacion());
-            habitacion.setTipo(habitacionDTO.getTipo());
-            habitacion.setPrecio(habitacionDTO.getPrecio());
+            habitacion.setNumero_habitacion(crearHabitacionDTO.getNumero_habitacion());
+            habitacion.setTipo(crearHabitacionDTO.getTipo());
+            habitacion.setPrecio(crearHabitacionDTO.getPrecio());
             habitacion.setHotel(hotel);
             habitacion.setDisponible(true);
             habitacionRepository.save(habitacion);
@@ -34,21 +34,21 @@ public class HabitacionService {
 
     }
 
-    public Optional<Habitacion> findById(Integer id){
-        return habitacionRepository.findById(id);
+    public Habitacion findById(Integer id){
+        return habitacionRepository.findById(id).orElse(null);
     }
 
     //TODO Si no existe la habitacion, hay que ponerle try catch?
-    public boolean update(HabitacionDTO habitacionActualizada) {
-        Optional<Habitacion> habitacion = habitacionRepository.findById(habitacionActualizada.getHabitacion_id());
-        Optional<Hotel> hotel = hotelRepository.findById(habitacionActualizada.getHotel_id());
+    public boolean update(ActualizarHabitacionDTO actualizarHabitacionDTO) {
+        Optional<Habitacion> habitacion = habitacionRepository.findById(actualizarHabitacionDTO.getId());
+        Optional<Hotel> hotel = hotelRepository.findById(actualizarHabitacionDTO.getHotel_id());
         if (habitacion.isPresent() && hotel.isPresent()) {
             Habitacion habitacionNueva = habitacion.get();
             habitacionNueva.setHabitacion_id(habitacion.get().getHabitacion_id());
-            habitacionNueva.setNumero_habitacion(habitacionActualizada.getNumero_habitacion());
-            habitacionNueva.setTipo(habitacionActualizada.getTipo());
-            habitacionNueva.setPrecio(habitacionActualizada.getPrecio());
-            habitacionNueva.setDisponible(habitacionActualizada.getDisponible());
+            habitacionNueva.setNumero_habitacion(actualizarHabitacionDTO.getNumero_habitacion());
+            habitacionNueva.setTipo(actualizarHabitacionDTO.getTipo());
+            habitacionNueva.setPrecio(actualizarHabitacionDTO.getPrecio());
+            habitacionNueva.setDisponible(actualizarHabitacionDTO.getDisponible());
             habitacionNueva.setHotel(hotel.get());
             habitacionNueva.setReservas(habitacion.get().getReservas());
             habitacionRepository.save(habitacionNueva);

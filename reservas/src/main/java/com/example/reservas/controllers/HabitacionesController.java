@@ -1,18 +1,15 @@
 package com.example.reservas.controllers;
 
-import com.example.reservas.DTO.HabitacionDTO;
+import com.example.reservas.DTO.HabitacionDTO.ActualizarHabitacionDTO;
+import com.example.reservas.DTO.HabitacionDTO.CrearHabitacionDTO;
 import com.example.reservas.DTO.UsuarioContrasenhaDTO;
-import com.example.reservas.entities.Habitacion;
+import com.example.reservas.entities.Hotel;
 import com.example.reservas.services.HabitacionService;
-import jakarta.transaction.Transactional;
+import com.example.reservas.services.HotelService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
-
-import java.util.Optional;
 
 @RestController
 @RequestMapping("/reservas/habitacion")
@@ -20,41 +17,47 @@ import java.util.Optional;
 public class HabitacionesController {
 
     private final HabitacionService habitacionService;
+    private final HotelService hotelService;
 
     private final String URLUSUARIO = "http://localhost:8702/usuarios";
 
 
     @PostMapping
-    public ResponseEntity<String> crearHabitacion(@RequestBody HabitacionDTO habitacionDTO){
-        if (validarUsuario(new UsuarioContrasenhaDTO(habitacionDTO.getNombre(),habitacionDTO.getContrasena()))){
-            boolean creada = habitacionService.crearHabitacion(habitacionDTO);
-            if (creada){
-                return ResponseEntity.status(HttpStatus.CREATED).body("La habitacion ha sido actualizada con éxito");
-            }else return ResponseEntity.status(HttpStatus.NOT_FOUND).body("ERROR al actualizar la habitacion");
+    public ResponseEntity<String> crearHabitacion(@RequestBody CrearHabitacionDTO crearHabitacionDTO){
+        if (validarUsuario(new UsuarioContrasenhaDTO(crearHabitacionDTO.getNombre(),crearHabitacionDTO.getContrasena()))){
+            Hotel hotel = hotelService.findById(crearHabitacionDTO.getHotel_id());
+            if(crearHabitacionDTO.getTipo().equalsIgnoreCase("individual") || crearHabitacionDTO.getTipo().equalsIgnoreCase("doble") || crearHabitacionDTO.getTipo().equalsIgnoreCase("suite")){
+                if (hotel != null){
+                    boolean creada = habitacionService.crearHabitacion(crearHabitacionDTO);
+                    if (creada){
+                        return ResponseEntity.ok().body("La habitacion ha sido creada con éxito");
+                    }else return ResponseEntity.ok().body("ERROR al crear la habitacion");
+                }else ResponseEntity.ok().body("No se encuentra el hotel con esa id");
+            }else return ResponseEntity.ok().body("El tipo de la habitacion es incorrecto");
         }else return ResponseEntity.ok().body("Usuario o contraseña incorrectos");
 
+        return ResponseEntity.ok().body("No se ha podido crear la habitacion");
     }
 
     @PatchMapping()
-    public ResponseEntity<String> actualizarHabitacion(@RequestBody HabitacionDTO habitacionActualizada){
-        if (validarUsuario(new UsuarioContrasenhaDTO(habitacionActualizada.getNombre(),habitacionActualizada.getContrasena()))){
-            boolean actualizada = habitacionService.update(habitacionActualizada);
+    public ResponseEntity<String> actualizarHabitacion(@RequestBody ActualizarHabitacionDTO actualizarHabitacionDTO){
+        if (validarUsuario(new UsuarioContrasenhaDTO(actualizarHabitacionDTO.getNombre(),actualizarHabitacionDTO.getContrasena()))){
+            boolean actualizada = habitacionService.update(actualizarHabitacionDTO);
             if (actualizada){
                 return ResponseEntity.ok().body("La habitacion ha sido actualizada con éxito");
-            }else return ResponseEntity.status(HttpStatus.NOT_FOUND).body("ERROR al actualizar la habitacion");
+            }else return ResponseEntity.ok().body("ERROR al actualizar la habitacion");
         }else return ResponseEntity.ok().body("Usuario o contraseña incorrectos");
 
 
     }
 
-    //TODO PREGUNTAR SI ESTA BIEN
     @DeleteMapping("/{id}")
     public ResponseEntity<String> eliminarHabitacion(@PathVariable Integer id,@RequestBody UsuarioContrasenhaDTO usuarioContrasenhaDTO){
         if (validarUsuario(usuarioContrasenhaDTO)){
             boolean eliminado = habitacionService.eliminarHabitacion(id);
             if (eliminado){
                 return ResponseEntity.ok("Se ha eliminado la habitacion");
-            }else return ResponseEntity.status(HttpStatus.NOT_FOUND).body("No se encontró la habitacion");
+            }else return ResponseEntity.ok().body("No se encontró la habitacion");
         }else return ResponseEntity.ok().body("Usuario o contraseña incorrectos");
 
     }

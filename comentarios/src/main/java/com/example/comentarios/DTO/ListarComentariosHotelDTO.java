@@ -23,6 +23,7 @@ public class ListarComentariosHotelDTO {
     }
 
     public ListarComentariosHotelDTO(Comentarios comentarios) {
+        setIdHotel(comentarios.getHotelId());
         setReservaId(comentarios.getReservaId());
         setPuntuacion(comentarios.getPuntuacion());
         setComentario(comentarios.getComentario());

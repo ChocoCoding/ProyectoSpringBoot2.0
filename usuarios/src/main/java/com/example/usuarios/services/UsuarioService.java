@@ -1,6 +1,7 @@
 package com.example.usuarios.services;
 
 
+import com.example.usuarios.DTO.CrearUsuarioDTO;
 import com.example.usuarios.entities.Usuario;
 import com.example.usuarios.repositories.UsuarioRepository;
 import lombok.RequiredArgsConstructor;
@@ -29,8 +30,17 @@ public class UsuarioService {
 
     }
 
-    public void guardar(Usuario usuario){
-        usuarioRepository.save(usuario);
+    public boolean guardar(CrearUsuarioDTO crearUsuarioDTO){
+        if (crearUsuarioDTO != null){
+            Usuario usuario = new Usuario();
+            usuario.setNombre(crearUsuarioDTO.getNombre());
+            usuario.setCorreo_electronico(crearUsuarioDTO.getCorreo_electronico());
+            usuario.setDireccion(crearUsuarioDTO.getDireccion());
+            usuario.setContrasena(crearUsuarioDTO.getContrasena());
+            usuarioRepository.save(usuario);
+            return true;
+        }else return false;
+
     }
 
     public Usuario findUsuarioById(Integer id){
@@ -50,16 +60,16 @@ public class UsuarioService {
     }
 
     public boolean eliminarUsuario(String nombre,String contrasena){
-        Optional<Usuario> usuarioAEliminar = usuarioRepository.findByNombreAndContrasena(nombre,contrasena);
-        if (usuarioAEliminar.isPresent()){
-            usuarioRepository.delete(usuarioAEliminar.get());
+        Usuario usuarioAEliminar = usuarioRepository.findByNombreAndContrasena(nombre,contrasena).orElse(null);
+        if (usuarioAEliminar != null){
+            usuarioRepository.delete(usuarioAEliminar);
             return true;
         }else return false;
     }
 
     public boolean validarUsuario(String nombre,String contrasena){
-        Optional<Usuario> usuarioValidar = usuarioRepository.findByNombreAndContrasena(nombre,contrasena);
-        return usuarioValidar.isPresent();
+        Usuario usuarioValidar = usuarioRepository.findByNombreAndContrasena(nombre,contrasena).orElse(null);
+        return usuarioValidar != null;
     }
 
 }

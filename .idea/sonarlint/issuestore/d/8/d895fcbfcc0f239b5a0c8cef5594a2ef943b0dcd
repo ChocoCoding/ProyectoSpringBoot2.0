@@ -1,16 +1,10 @@
 
 ª
-java:S1192""bDefine a constant instead of duplicating this literal "Usuario o contraseÃ±a incorrectos" 3 times.(ûßš“ıÿÿÿÿ8ÙÛµö1J$4555a08b-680c-47e5-af62-0df77b2b436a
-œ	java:S116"URename this field "URLUSUARIO" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ñ‡û­ıÿÿÿÿ8êÛµö1J$f13489ce-63c8-41e1-83c1-1162981f0726
+java:S1192'"bDefine a constant instead of duplicating this literal "Usuario o contraseÃ±a incorrectos" 3 times.(ûßš“ıÿÿÿÿ8–Úùº÷1J$612ed267-6663-4ff8-9728-bf6ff83f5e5f
+œ	java:S116"URename this field "URLUSUARIO" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ñ‡û­ıÿÿÿÿ8 Úùº÷1J$8aa3b2be-a5f9-4d96-95e5-70b90b696f74
 i
-java:S1170"!Make this final field static too.(ñ‡û­ıÿÿÿÿ8ëÛµö1J$ec5ea85d-afaf-4d6a-8865-d3b2e818bf3f
-u
-java:S11352"2Complete the task associated to this TODO comment.(ÿË°8¸Íñ¹õ1J$f977c087-62a2-4603-a241-8e0e018641c4
+java:S1170"!Make this final field static too.(ñ‡û­ıÿÿÿÿ8 Úùº÷1J$d28a53e3-c143-458d-8df8-e70efc49f8c8
+‹
+java:S1128"CRemove this unused import 'com.example.reservas.DTO.HabitacionDTO'.(›³Èéÿÿÿÿÿ8¨Úùº÷1J$a7ebecf3-d3ba-47d2-a072-bde75e96a80a
 ˆ
-java:S1128"ERemove this unused import 'com.example.reservas.entities.Habitacion'.(Ùã±õ8ó­öÆõ1J$d79ca309-8bde-4ec6-96ed-8bad79e0faf9
-
-java:S1128">Remove this unused import 'jakarta.transaction.Transactional'.(ß–Ê³8®ïãö1J$3427514c-a142-4cb3-9930-96b8aade3661
-›
-java:S1128	"SRemove this unused import 'org.springframework.beans.factory.annotation.Autowired'.(¡¸Îùÿÿÿÿ8ÎËöÆõ1J$f40f3938-af46-413d-85cb-19716b4a73ef
-w
-java:S1128"/Remove this unused import 'java.util.Optional'.(¨˜ëİüÿÿÿÿ8ó­öÆõ1J$00b20a11-c933-4d37-892b-3cea8535366d
+java:S1128"@Remove this unused import 'org.springframework.http.HttpStatus'.(íŸ¤Šúÿÿÿÿ8¨Úùº÷1J$40eecd27-5111-4933-85d1-fb1068f261c5

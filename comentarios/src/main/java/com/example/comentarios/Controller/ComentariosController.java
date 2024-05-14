@@ -3,16 +3,12 @@ package com.example.comentarios.Controller;
 import com.example.comentarios.DTO.*;
 import com.example.comentarios.entities.Comentarios;
 import com.example.comentarios.service.ComentariosService;
-import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.jpa.repository.Query;
 import org.springframework.graphql.data.method.annotation.Argument;
 import org.springframework.graphql.data.method.annotation.MutationMapping;
 import org.springframework.graphql.data.method.annotation.QueryMapping;
-import org.springframework.http.HttpEntity;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.client.RestTemplate;
 
 import java.util.HashMap;
@@ -32,9 +28,12 @@ public class ComentariosController {
     public CrearComentarioDTO crearComentario(@Argument CrearComentarioDTO crearComentarioDTO){
         Integer hotelId = obtenerIdApartirNombre(crearComentarioDTO.getNombreHotel(),new UsuarioContrasenhaDTO(crearComentarioDTO.getNombre(),crearComentarioDTO.getContrasena()));
         Integer usuarioId = Integer.parseInt(obtenerIdUsuario(new UsuarioContrasenhaDTO(crearComentarioDTO.getNombre())));
-        Boolean checkIdReserva = checkReserva(new CheckReservaDTO(usuarioId,hotelId,Integer.parseInt(crearComentarioDTO.getReservaId())));
-        comentariosService.crearComentario(crearComentarioDTO,hotelId,usuarioId,checkIdReserva);
-        return crearComentarioDTO;
+
+        if (validarUsuario((new UsuarioContrasenhaDTO(crearComentarioDTO.getNombre(),crearComentarioDTO.getContrasena()))) && (checkReserva(new CheckReservaDTO(usuarioId,hotelId,crearComentarioDTO.getReservaId())))){
+            comentariosService.crearComentario(crearComentarioDTO,hotelId,usuarioId);
+            return crearComentarioDTO;
+        }else return null;
+
     }
 
     @MutationMapping
@@ -66,6 +65,60 @@ public class ComentariosController {
     }
 
 
+    @QueryMapping
+    List<ListarComentariosHotelDTO> listarComentariosUsuario(@Argument UsuarioContrasenhaDTO usuarioContrasenhaDTO){
+        if (validarUsuario(usuarioContrasenhaDTO)){
+            Integer usuarioId = Integer.valueOf(obtenerIdUsuario(usuarioContrasenhaDTO));
+
+            List<ListarComentariosHotelDTO> listaComentariosDto = comentariosService.listarComentariosUsuario(usuarioId).stream()
+                    .map(ListarComentariosHotelDTO::new).toList();
+
+            for (ListarComentariosHotelDTO l : listaComentariosDto) {
+                String nombreH = obtenerNombreApartirId(usuarioContrasenhaDTO,l.getIdHotel());
+                l.setNombreHotel(nombreH);
+            }
+
+            return listaComentariosDto;
+
+        }
+        return  null;
+    }
+
+    @QueryMapping
+    public List<ListarComentariosHotelDTO> mostrarComentarioUsuarioReserva(@Argument UsuarioContrasenhaDTO usuarioContrasenhaDTO,@Argument Integer reservaId){
+        if (validarUsuario(usuarioContrasenhaDTO)){
+            Integer usuarioId = Integer.valueOf(obtenerIdUsuario(usuarioContrasenhaDTO));
+            List<ListarComentariosHotelDTO> listaComentariosDto = comentariosService.mostrarComentarioUsuarioReserva(usuarioId,reservaId).stream()
+                    .map(ListarComentariosHotelDTO::new).toList();
+
+            for (ListarComentariosHotelDTO l : listaComentariosDto) {
+                String nombreH = obtenerNombreApartirId(usuarioContrasenhaDTO,l.getIdHotel());
+                l.setNombreHotel(nombreH);
+            }
+            return listaComentariosDto;
+        }else return null;
+    }
+
+    @QueryMapping
+    public Double puntuacionesMediasUsuario(@Argument UsuarioContrasenhaDTO usuarioContrasenhaDTO){
+        if(validarUsuario(usuarioContrasenhaDTO)){
+            int idUsuario = Integer.parseInt(obtenerIdUsuario(usuarioContrasenhaDTO));
+            return comentariosService.mediaPuntuacionPorUsuario(idUsuario);
+        }else return null;
+    }
+
+
+
+    //TODO Deberia devolver un DOUBLE
+    @QueryMapping
+    public Double puntuacionMediaHotel(@Argument UsuarioContrasenhaDTO usuarioContrasenhaDTO,@Argument String nombreHotel){
+        if (validarUsuario(usuarioContrasenhaDTO)){
+            Integer hotelId = obtenerIdApartirNombre(nombreHotel,usuarioContrasenhaDTO);
+            return comentariosService.puntuacionMediaHotel(hotelId);
+        }else return null;
+    }
+
+
     public boolean validarUsuario(UsuarioContrasenhaDTO usuarioContrasenhaDTO){
         RestTemplate restTemplate = new RestTemplate();
         String urlValidar = URLUSUARIO + "/validar";
@@ -93,11 +146,33 @@ public class ComentariosController {
         return responseEntity.getBody();
     }
 
+    public String obtenerNombreApartirId(UsuarioContrasenhaDTO usuarioContrasenhaDTO,Integer idHotel){
+        RestTemplate restTemplate = new RestTemplate();
+        String urlObtenerInfo = URLRESERVAS + "/hotel/nombre/{idHotel}";
+
+        Map<String, Integer> uriVariables = new HashMap<>();
+        uriVariables.put("idHotel", idHotel);
+
+        ResponseEntity<String> responseEntity = restTemplate.postForEntity(urlObtenerInfo, usuarioContrasenhaDTO, String.class, uriVariables);
+
+        return responseEntity.getBody();
+    }
+
+
+
+
     public boolean checkReserva(CheckReservaDTO checkReservaDTO){
         RestTemplate restTemplate = new RestTemplate();
         String urlCheckReservas = URLRESERVAS + "/check/{idUsuario}-{idHotel}-{idReserva}";
-        ResponseEntity<Boolean> responseEntity = restTemplate.getForEntity(urlCheckReservas, Boolean.class,checkReservaDTO.getUsuarioId()+"-"+checkReservaDTO.getHotelId()+"-"+checkReservaDTO.getReservaId());
+        Map<String, Integer> uriVariables = new HashMap<>();
+        uriVariables.put("idUsuario", checkReservaDTO.getUsuarioId());
+        uriVariables.put("idHotel", checkReservaDTO.getHotelId());
+        uriVariables.put("idReserva", checkReservaDTO.getReservaId());
+
+        ResponseEntity<Boolean> responseEntity = restTemplate.getForEntity(urlCheckReservas, Boolean.class,checkReservaDTO.getUsuarioId(),checkReservaDTO.getHotelId(),checkReservaDTO.getReservaId());
         return Boolean.TRUE.equals(responseEntity.getBody());
     }
+
+
 
 }

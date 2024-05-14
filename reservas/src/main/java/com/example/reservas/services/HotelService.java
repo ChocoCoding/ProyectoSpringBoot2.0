@@ -1,7 +1,8 @@
 package com.example.reservas.services;
 
-import ch.qos.logback.core.joran.conditional.IfAction;
-import com.example.reservas.DTO.HotelDTO;
+import com.example.reservas.DTO.HotelDTO.ActualizarHotelDTO;
+import com.example.reservas.DTO.HotelDTO.CrearHotelDTO;
+import com.example.reservas.DTO.HotelDTO.HotelDTO;
 import com.example.reservas.entities.Habitacion;
 import com.example.reservas.entities.Hotel;
 import com.example.reservas.repositories.HabitacionRepository;
@@ -20,20 +21,20 @@ public class HotelService {
     private final HotelRepository hotelRepository;
     private final HabitacionRepository habitacionRepository;
 
-    public void guardar(HotelDTO hotelNuevo){
+    public void guardar(CrearHotelDTO crearHotelDTO){
         Hotel hotel = new Hotel();
-        hotel.setNombre(hotelNuevo.getNombre());
-        hotel.setDireccion(hotelNuevo.getDireccion());
+        hotel.setNombre(crearHotelDTO.getNombre());
+        hotel.setDireccion(crearHotelDTO.getDireccion());
         hotelRepository.save(hotel);
     }
 
-    public boolean update(HotelDTO hotelActualizado){
-        Optional<Hotel> hotel = hotelRepository.findById(hotelActualizado.getHotel_id());
+    public boolean update(ActualizarHotelDTO actualizarHotelDTO){
+        Optional<Hotel> hotel = hotelRepository.findById(actualizarHotelDTO.getId());
         if (hotel.isPresent()){
             Hotel hotelNuevo = hotel.get();
             hotelNuevo.setHotel_id(hotel.get().getHotel_id());
-            hotelNuevo.setNombre(hotelActualizado.getNombre());
-            hotelNuevo.setDireccion(hotelActualizado.getDireccion());
+            hotelNuevo.setNombre(actualizarHotelDTO.getNombre());
+            hotelNuevo.setDireccion(actualizarHotelDTO.getDireccion());
             hotelRepository.save(hotelNuevo);
             return true;
         }else return false;

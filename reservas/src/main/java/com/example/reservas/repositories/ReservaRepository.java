@@ -1,6 +1,5 @@
 package com.example.reservas.repositories;
 
-import com.example.reservas.DTO.DelvolverReservaDTO;
 import com.example.reservas.entities.Reserva;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
