@@ -3,6 +3,7 @@ package com.example.comentarios.Controller;
 import com.example.comentarios.DTO.*;
 import com.example.comentarios.entities.Comentarios;
 import com.example.comentarios.service.ComentariosService;
+import java.util.Collections;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.graphql.data.method.annotation.Argument;
 import org.springframework.graphql.data.method.annotation.MutationMapping;
@@ -39,29 +40,28 @@ public class ComentariosController {
     @MutationMapping
     public String eliminarComentarios(){
        return comentariosService.eliminarComentarios();
-
     }
 
     @MutationMapping
-    public String eliminarComentarioDeUsuario(@Argument UsuarioContrasenhaDTO usuarioContrasenhaDTO,@Argument String _id) {
-        if (validarUsuario(usuarioContrasenhaDTO)){
-            return comentariosService.eliminarComentarioDeUsuario(_id);
+    public String eliminarComentarioDeUsuario(@Argument EliminarComentarioUsuarioDTO eliminarComentarioUsuarioDTO) {
+        if (validarUsuario(new UsuarioContrasenhaDTO(eliminarComentarioUsuarioDTO.getNombre(),eliminarComentarioUsuarioDTO.getContrasena()))){
+            return comentariosService.eliminarComentarioDeUsuario(eliminarComentarioUsuarioDTO.get_id());
         }else return "Error al autenticarse";
 
     }
 
     @QueryMapping
-    private List<ListarComentariosHotelDTO> listarComentariosHotel(@Argument UsuarioContrasenhaDTO usuarioContrasenhaDTO,@Argument String nombreHotel){
-        if (validarUsuario(usuarioContrasenhaDTO)){
-            Integer hotelId = obtenerIdApartirNombre(nombreHotel,usuarioContrasenhaDTO);
+    private List<ListarComentariosHotelDTO> listarComentariosHotel(@Argument ListarComentariosHotelDTO listarComentariosHotelDTO){
+        if (validarUsuario(new UsuarioContrasenhaDTO(listarComentariosHotelDTO.getNombre(),listarComentariosHotelDTO.getContrasena()))){
+            Integer hotelId = obtenerIdApartirNombre(listarComentariosHotelDTO.getNombreHotel(),new UsuarioContrasenhaDTO(listarComentariosHotelDTO.getNombre(),listarComentariosHotelDTO.getContrasena()));
             List<ListarComentariosHotelDTO> listaComentariosDTO = comentariosService.listarComentariosHotel(hotelId).stream()
                     .map(ListarComentariosHotelDTO::new).toList();
 
             for (ListarComentariosHotelDTO l : listaComentariosDTO) {
-                l.setNombreHotel(nombreHotel);
+                l.setNombreHotel(listarComentariosHotelDTO.getNombreHotel());
             }
             return listaComentariosDTO;
-        }else return null;
+        }else return Collections.emptyList();
     }
 
 
@@ -77,26 +77,24 @@ public class ComentariosController {
                 String nombreH = obtenerNombreApartirId(usuarioContrasenhaDTO,l.getIdHotel());
                 l.setNombreHotel(nombreH);
             }
-
             return listaComentariosDto;
-
         }
-        return  null;
+        return Collections.emptyList();
     }
 
     @QueryMapping
-    public List<ListarComentariosHotelDTO> mostrarComentarioUsuarioReserva(@Argument UsuarioContrasenhaDTO usuarioContrasenhaDTO,@Argument Integer reservaId){
-        if (validarUsuario(usuarioContrasenhaDTO)){
-            Integer usuarioId = Integer.valueOf(obtenerIdUsuario(usuarioContrasenhaDTO));
-            List<ListarComentariosHotelDTO> listaComentariosDto = comentariosService.mostrarComentarioUsuarioReserva(usuarioId,reservaId).stream()
+    public List<ListarComentariosHotelDTO> mostrarComentarioUsuarioReserva(@Argument MostrarComentarioReservaDTO mostrarComentarioReservaDTO){
+        if (validarUsuario(new UsuarioContrasenhaDTO(mostrarComentarioReservaDTO.getNombre(),mostrarComentarioReservaDTO.getContrasena()))){
+            Integer usuarioId = Integer.valueOf(obtenerIdUsuario(new UsuarioContrasenhaDTO(mostrarComentarioReservaDTO.getNombre(),mostrarComentarioReservaDTO.getContrasena())));
+            List<ListarComentariosHotelDTO> listaComentariosDto = comentariosService.mostrarComentarioUsuarioReserva(usuarioId, mostrarComentarioReservaDTO.getReservaId()).stream()
                     .map(ListarComentariosHotelDTO::new).toList();
 
             for (ListarComentariosHotelDTO l : listaComentariosDto) {
-                String nombreH = obtenerNombreApartirId(usuarioContrasenhaDTO,l.getIdHotel());
+                String nombreH = obtenerNombreApartirId(new UsuarioContrasenhaDTO(mostrarComentarioReservaDTO.getNombre(),mostrarComentarioReservaDTO.getContrasena()),l.getIdHotel());
                 l.setNombreHotel(nombreH);
             }
             return listaComentariosDto;
-        }else return null;
+        }else return Collections.emptyList();
     }
 
     @QueryMapping
@@ -164,10 +162,6 @@ public class ComentariosController {
     public boolean checkReserva(CheckReservaDTO checkReservaDTO){
         RestTemplate restTemplate = new RestTemplate();
         String urlCheckReservas = URLRESERVAS + "/check/{idUsuario}-{idHotel}-{idReserva}";
-        Map<String, Integer> uriVariables = new HashMap<>();
-        uriVariables.put("idUsuario", checkReservaDTO.getUsuarioId());
-        uriVariables.put("idHotel", checkReservaDTO.getHotelId());
-        uriVariables.put("idReserva", checkReservaDTO.getReservaId());
 
         ResponseEntity<Boolean> responseEntity = restTemplate.getForEntity(urlCheckReservas, Boolean.class,checkReservaDTO.getUsuarioId(),checkReservaDTO.getHotelId(),checkReservaDTO.getReservaId());
         return Boolean.TRUE.equals(responseEntity.getBody());

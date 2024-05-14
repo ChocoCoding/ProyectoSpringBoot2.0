@@ -9,11 +9,19 @@ import lombok.experimental.SuperBuilder;
 @NoArgsConstructor
 @SuperBuilder
 public class ListarComentariosHotelDTO {
+    private String nombre;
+    private String contrasena;
     private Integer idHotel;
     private String nombreHotel;
     private Integer reservaId;
     private Float puntuacion;
     private String comentario;
+
+    public ListarComentariosHotelDTO(String nombre, String contrasena, String nombreHotel) {
+        this.nombre = nombre;
+        this.contrasena = contrasena;
+        this.nombreHotel = nombreHotel;
+    }
 
     public ListarComentariosHotelDTO(String nombreHotel, Integer reservaId, Float puntuacion, String comentario) {
         this.nombreHotel = nombreHotel;

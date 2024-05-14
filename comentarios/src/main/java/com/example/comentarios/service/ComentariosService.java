@@ -30,7 +30,7 @@ public class ComentariosService {
             comentariosRepository.deleteById(_id);
             return "Se ha eliminado el comentario";
         }catch (Exception e){
-            return "No se ha podido eliminar el comentario";
+            return null;
         }
     }
 
