@@ -101,3 +101,5 @@ z
 Japigateway/src/main/java/com/example/apigateway/ApigatewayApplication.java,b\a\baa197f4e643ba4347ba5a0900699059717c79db
 †
 Vcomentarios/src/main/java/com/example/comentarios/DTO/MostrarComentarioReservaDTO.java,6\8\6810be3d6174b8d123c7163f549c576eb8dad804
+z
+Jcomentarios/src/main/java/com/example/comentarios/DTO/ObtenerHotelDTO.java,0\2\0273fce1f3f090b552752d917d3f2744452d29a8
