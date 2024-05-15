@@ -27,19 +27,29 @@ public class ComentariosController {
 
     @MutationMapping
     public CrearComentarioDTO crearComentario(@Argument CrearComentarioDTO crearComentarioDTO){
-        Integer hotelId = obtenerIdApartirNombre(crearComentarioDTO.getNombreHotel(),new UsuarioContrasenhaDTO(crearComentarioDTO.getNombre(),crearComentarioDTO.getContrasena()));
-        Integer usuarioId = Integer.parseInt(obtenerIdUsuario(new UsuarioContrasenhaDTO(crearComentarioDTO.getNombre())));
+        Integer hotelId;
+        Integer usuarioId;
+        try {
+            hotelId= obtenerIdApartirNombre(crearComentarioDTO.getNombreHotel(),new UsuarioContrasenhaDTO(crearComentarioDTO.getNombre(),crearComentarioDTO.getContrasena()));
+            usuarioId= Integer.parseInt(obtenerIdUsuario(new UsuarioContrasenhaDTO(crearComentarioDTO.getNombre())));
+            if (validarUsuario((new UsuarioContrasenhaDTO(crearComentarioDTO.getNombre(),
+                    crearComentarioDTO.getContrasena()))) && (checkReserva(new CheckReservaDTO(usuarioId,hotelId,crearComentarioDTO.getReservaId())))){
+                comentariosService.crearComentario(crearComentarioDTO,hotelId,usuarioId);
+                return crearComentarioDTO;
+            }return null;
 
-        if (validarUsuario((new UsuarioContrasenhaDTO(crearComentarioDTO.getNombre(),crearComentarioDTO.getContrasena()))) && (checkReserva(new CheckReservaDTO(usuarioId,hotelId,crearComentarioDTO.getReservaId())))){
-            comentariosService.crearComentario(crearComentarioDTO,hotelId,usuarioId);
-            return crearComentarioDTO;
-        }else return null;
+        }catch (Exception e){
+            return null;
+        }
+
+
 
     }
 
     @MutationMapping
     public String eliminarComentarios(){
-       return comentariosService.eliminarComentarios();
+        return comentariosService.eliminarComentarios();
+
     }
 
     @MutationMapping
@@ -106,14 +116,16 @@ public class ComentariosController {
     }
 
 
-
-    //TODO Deberia devolver un DOUBLE
     @QueryMapping
-    public Double puntuacionMediaHotel(@Argument UsuarioContrasenhaDTO usuarioContrasenhaDTO,@Argument String nombreHotel){
-        if (validarUsuario(usuarioContrasenhaDTO)){
-            Integer hotelId = obtenerIdApartirNombre(nombreHotel,usuarioContrasenhaDTO);
-            return comentariosService.puntuacionMediaHotel(hotelId);
-        }else return null;
+    public Double puntuacionMediaHotel(@Argument ObtenerHotelDTO obtenerHotelDTO){
+        if (validarUsuario(new UsuarioContrasenhaDTO(obtenerHotelDTO.getNombre(),obtenerHotelDTO.getContrasena()))){
+            try {
+                Integer hotelId = obtenerIdApartirNombre(obtenerHotelDTO.getNombreHotel(),new UsuarioContrasenhaDTO(obtenerHotelDTO.getNombre(),obtenerHotelDTO.getContrasena()));
+                return comentariosService.puntuacionMediaHotel(hotelId);
+            }catch (NullPointerException e){
+                return -1.0;
+            }
+        }else return -1.0;
     }
 
 
@@ -138,10 +150,13 @@ public class ComentariosController {
 
         Map<String, String> uriVariables = new HashMap<>();
         uriVariables.put("nombre", nombreHotel);
-
+        try {
         ResponseEntity<Integer> responseEntity = restTemplate.postForEntity(urlObtenerInfo, usuarioContrasenhaDTO, Integer.class, uriVariables);
-
         return responseEntity.getBody();
+        }catch (NullPointerException e){
+            return -1;
+        }
+
     }
 
     public String obtenerNombreApartirId(UsuarioContrasenhaDTO usuarioContrasenhaDTO,Integer idHotel){
@@ -150,21 +165,27 @@ public class ComentariosController {
 
         Map<String, Integer> uriVariables = new HashMap<>();
         uriVariables.put("idHotel", idHotel);
+        try {
+            ResponseEntity<String> responseEntity = restTemplate.postForEntity(urlObtenerInfo, usuarioContrasenhaDTO, String.class, uriVariables);
+            return responseEntity.getBody();
+        }catch (Exception e){
+            return null;
+        }
 
-        ResponseEntity<String> responseEntity = restTemplate.postForEntity(urlObtenerInfo, usuarioContrasenhaDTO, String.class, uriVariables);
-
-        return responseEntity.getBody();
     }
-
-
 
 
     public boolean checkReserva(CheckReservaDTO checkReservaDTO){
         RestTemplate restTemplate = new RestTemplate();
         String urlCheckReservas = URLRESERVAS + "/check/{idUsuario}-{idHotel}-{idReserva}";
 
-        ResponseEntity<Boolean> responseEntity = restTemplate.getForEntity(urlCheckReservas, Boolean.class,checkReservaDTO.getUsuarioId(),checkReservaDTO.getHotelId(),checkReservaDTO.getReservaId());
-        return Boolean.TRUE.equals(responseEntity.getBody());
+        try {
+            ResponseEntity<Boolean> responseEntity = restTemplate.getForEntity(urlCheckReservas, Boolean.class,checkReservaDTO.getUsuarioId(),checkReservaDTO.getHotelId(),checkReservaDTO.getReservaId());
+            return Boolean.TRUE.equals(responseEntity.getBody());
+        }catch (Exception e){
+            return false;
+        }
+
     }
 
 

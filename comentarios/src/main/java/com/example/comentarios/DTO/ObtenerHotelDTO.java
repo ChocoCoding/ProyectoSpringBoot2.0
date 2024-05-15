@@ -12,11 +12,13 @@ import lombok.experimental.SuperBuilder;
 
 public class ObtenerHotelDTO{
     private String nombreHotel;
-    private UsuarioContrasenhaDTO usuarioContrasenhaDTO;
+    private String nombre;
+    private String contrasena;
 
 
-    public ObtenerHotelDTO(UsuarioContrasenhaDTO usuarioContrasenhaDTO,String nombreHotel) {
+    public ObtenerHotelDTO(String nombreHotel, String nombre, String contrasena) {
         this.nombreHotel = nombreHotel;
-        this.usuarioContrasenhaDTO = usuarioContrasenhaDTO;
+        this.nombre = nombre;
+        this.contrasena = contrasena;
     }
 }

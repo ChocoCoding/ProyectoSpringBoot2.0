@@ -3,9 +3,7 @@ package com.example.comentarios.service;
 import com.example.comentarios.DTO.CrearComentarioDTO;
 import com.example.comentarios.entities.Comentarios;
 import com.example.comentarios.repository.ComentariosRepository;
-import org.bson.Document;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.mongodb.core.aggregation.AggregationResults;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -17,21 +15,19 @@ public class ComentariosService {
     private ComentariosRepository comentariosRepository;
 
     public String eliminarComentarios(){
-        List<Comentarios> listaComentarios =  comentariosRepository.findAll();
-
         try {
+        List<Comentarios> listaComentarios =  comentariosRepository.findAll();
             comentariosRepository.deleteAll();
             return "Se han eliminado todos los comentarios";
         }catch (Exception e){return "No se han podido eliminar los comentarios";}
     }
 
     public String eliminarComentarioDeUsuario(String _id){
-        try {
+        Comentarios existe = comentariosRepository.findById(_id).orElse(null);
+        if(existe!= null){
             comentariosRepository.deleteById(_id);
             return "Se ha eliminado el comentario";
-        }catch (Exception e){
-            return null;
-        }
+        }else return "La id del comentario no existe";
     }
 
     public List<Comentarios> listarComentariosHotel(Integer hotelId){
@@ -59,11 +55,20 @@ public class ComentariosService {
     }
 
     public Double puntuacionMediaHotel(int idHotel){
-        return comentariosRepository.puntuacionMediaHotel(idHotel).getUniqueMappedResult().getDouble("mediaPuntos");
+        try {
+            return comentariosRepository.puntuacionMediaHotel(idHotel).getUniqueMappedResult().getDouble("mediaPuntos");
+        }catch (NullPointerException e){
+            return -1.0;
+        }
+
     }
 
     public Double mediaPuntuacionPorUsuario(int idUsuario){
-        return comentariosRepository.puntuacionesMediasUsuario(idUsuario).getUniqueMappedResult().getDouble("mediaPuntos");
+        try {
+            return comentariosRepository.puntuacionesMediasUsuario(idUsuario).getUniqueMappedResult().getDouble("mediaPuntos");
+        }catch (NullPointerException e){
+            return -1.0;
+        }
     }
 
 }

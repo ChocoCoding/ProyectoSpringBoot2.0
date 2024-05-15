@@ -87,3 +87,17 @@ Mreservas/src/main/java/com/example/reservas/DTO/ReservasDTO/CrearReserva.java,
 Qreservas/src/main/java/com/example/reservas/DTO/ReservasDTO/CambiarEstadoDTO.java,2\b\2ba04191d7467326541ea3369de4d4f800abaad9
 ƒ
 Sreservas/src/main/java/com/example/reservas/DTO/ReservasDTO/DevolverReservaDTO.java,8\d\8d8db122343f22b9d2ad515392129d83a2305d9e
+@
+reservas/pom.xml,b\1\b17769483e7e84e65fe0b679478693cf9a08ef97
+@
+usuarios/pom.xml,3\f\3fb81bfc28646eb3418745acd25b3436c26a7b99
+>
+eureka/pom.xml,3\0\30f428f04913bd558ce1a35dc4f7699762244c5b
+‡
+Wcomentarios/src/main/java/com/example/comentarios/DTO/EliminarComentarioUsuarioDTO.java,8\6\86b93668b8f891a0e347c387cbf7bdb637b31b79
+B
+apigateway/pom.xml,f\3\f3e1887271da57b570f343c29fffbd4a7c2fd3fe
+z
+Japigateway/src/main/java/com/example/apigateway/ApigatewayApplication.java,b\a\baa197f4e643ba4347ba5a0900699059717c79db
+†
+Vcomentarios/src/main/java/com/example/comentarios/DTO/MostrarComentarioReservaDTO.java,6\8\6810be3d6174b8d123c7163f549c576eb8dad804

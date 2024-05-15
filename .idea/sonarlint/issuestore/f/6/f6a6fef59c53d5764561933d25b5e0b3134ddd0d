@@ -1,21 +1,10 @@
 
-“	java:S117."QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(÷åì©8Î¨ò¶÷1J$392544ea-845a-46e0-b700-d600ff091ff6
 ¡	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(õ¨¡™ùÿÿÿÿ8Ğ¨ò¶÷1J$0b4a21de-0054-4f65-9b3b-93c5ec51de89
-œ	java:S116"URename this field "URLUSUARIO" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ñ‡û­ıÿÿÿÿ8İ¨ò¶÷1J$2116ab01-2c1d-480f-b3c5-c148eb5b4935
-˜	java:S116"VRename this field "URLRESERVAS" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ÿéöŒ8İ¨ò¶÷1J$740b6b7f-566c-4400-b3b7-1625fb1c1752
+œ	java:S116"URename this field "URLUSUARIO" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ñ‡û­ıÿÿÿÿ8İ¨ò¶÷1J$2116ab01-2c1d-480f-b3c5-c148eb5b4935
+˜	java:S116"VRename this field "URLRESERVAS" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ÿéöŒ8İ¨ò¶÷1J$740b6b7f-566c-4400-b3b7-1625fb1c1752
 i
-java:S1170"!Make this final field static too.(ñ‡û­ıÿÿÿÿ8İ¨ò¶÷1J$90689764-a576-4f91-93db-65cd39d34b5d
+java:S1170"!Make this final field static too.(ñ‡û­ıÿÿÿÿ8İ¨ò¶÷1J$90689764-a576-4f91-93db-65cd39d34b5d
 d
-java:S1170"!Make this final field static too.(ÿéöŒ8İ¨ò¶÷1J$b92f9193-96ef-4c43-a06e-2ee6545fdcbc
-…
-java:S6813"BRemove this field injection and use constructor injection instead.(êæÄŞ8Ş¨ò¶÷1J$f2f5a227-49e4-47ee-abdc-64a51e9fe50b
-n
-java:S1168@"+Return an empty collection instead of null.(ÎÍëÍ8å¨ò¶÷1J$71a8a975-a534-40e9-bb2a-e383ab33014e
-n
-java:S1168T"+Return an empty collection instead of null.(¥¹ï8ç¨ò¶÷1J$88f6fb4f-0e25-41e0-9641-0604cc9db9a6
-n
-java:S1168c"+Return an empty collection instead of null.(ÎÍëÍ8è¨ò¶÷1J$5ec543f0-c906-4a04-98ed-71c16946f1c9
+java:S1170"!Make this final field static too.(ÿéöŒ8İ¨ò¶÷1J$b92f9193-96ef-4c43-a06e-2ee6545fdcbc
 u
-java:S1135p"2Complete the task associated to this TODO comment.(¥‹§Ï8é¨ò¶÷1J$21b5cf32-9870-4458-ba5b-c5417e2957f8
-‹
-java:S1128"IRemove this unused import 'com.example.comentarios.entities.Comentarios'.(÷Õ“V8ÉëÆ»÷1J$72cf2dd5-b5a5-403d-acb3-446b6ffe39aa
+java:S1135n"2Complete the task associated to this TODO comment.(¥‹§Ï8é¨ò¶÷1J$21b5cf32-9870-4458-ba5b-c5417e2957f8
