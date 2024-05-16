@@ -1,10 +1,12 @@
 
-{	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(õ¨¡™ùÿÿÿÿ8ÄËˆç÷1
-v	java:S116"URename this field "URLUSUARIO" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ñ‡û­ıÿÿÿÿ8áËˆç÷1
-r	java:S116"VRename this field "URLRESERVAS" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ÿéöŒ8áËˆç÷1
-C
-java:S1170"!Make this final field static too.(ñ‡û­ıÿÿÿÿ8âËˆç÷1
->
-java:S1170"!Make this final field static too.(ÿéöŒ8âËˆç÷1
-e
-java:S1128"IRemove this unused import 'com.example.comentarios.entities.Comentarios'.(÷Õ“V8ùËˆç÷1
+¡	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(õ¨¡™ùÿÿÿÿ8ÌÖÜ“ø1J$474c1e95-5d06-415a-843b-acc73b6ab55e
+œ	java:S116"URename this field "URLUSUARIO" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ñ‡û­ıÿÿÿÿ8ãÖÜ“ø1J$8fc89a07-5499-49a2-83f4-4f9a31580422
+˜	java:S116"VRename this field "URLRESERVAS" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ÿéöŒ8äÖÜ“ø1J$0f2e5f15-d5a3-4ed3-a082-e18a942b4709
+i
+java:S1170"!Make this final field static too.(ñ‡û­ıÿÿÿÿ8äÖÜ“ø1J$fb7bdc9e-74f6-45a2-a28c-eb9f412015b2
+d
+java:S1170"!Make this final field static too.(ÿéöŒ8äÖÜ“ø1J$3eb2948d-e322-41a6-bfc2-f902ff4d343f
+…
+java:S6813"BRemove this field injection and use constructor injection instead.(êæÄŞ8äÖÜ“ø1J$5a06eb38-e181-42b7-bb3e-48a39338d9e3
+‹
+java:S1128"IRemove this unused import 'com.example.comentarios.entities.Comentarios'.(÷Õ“V8ùÖÜ“ø1J$685be982-479b-4368-b577-da60fa382be8

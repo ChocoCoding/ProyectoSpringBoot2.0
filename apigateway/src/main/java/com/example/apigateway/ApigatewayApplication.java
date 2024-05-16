@@ -26,8 +26,6 @@ public class ApigatewayApplication {
 				.route("comentarios", r -> r.path("/comentarios/**")
 						.filters(f -> f.rewritePath("/comentarios/(?<segment>.*)", "/${segment}"))
 						.uri("lb://comentarios"))
-				/*.route("empleadosQLGraph", r -> r.path("/empleadosQL706")
-						.uri("lb://empleadosQL:8706/empleadosQL706"))*/
 				.build();
 	}
 

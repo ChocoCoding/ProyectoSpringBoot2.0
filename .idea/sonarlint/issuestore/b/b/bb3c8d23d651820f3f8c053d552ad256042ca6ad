@@ -5,5 +5,7 @@ java:S2293B"YReplace the type specification in this constructor call with the d
 java:S1192#"JDefine a constant instead of duplicating this literal "Pendiente" 3 times.(ÕÊÒ­úÿÿÿÿ8×ª…¼÷1J$9def74f5-ef11-4a11-9a95-73cab81666ef
 u
 java:S1135"2Complete the task associated to this TODO comment.(áäŠÈ8öÒÄ»÷1J$074e4ad5-40f7-4036-af6a-848f8a47642e
+H
+java:S1168;"+Return an empty collection instead of null.(ÎÍëÍ8ğ§ı’ø1
 ‰
 java:S1126H"AReplace this if-then-else statement by a single return statement.(•õêÇûÿÿÿÿ8úÒÄ»÷1J$9e7b7748-51b4-4c48-841e-c15c4ee31bd4

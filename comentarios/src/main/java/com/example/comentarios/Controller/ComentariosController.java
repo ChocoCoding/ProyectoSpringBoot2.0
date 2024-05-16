@@ -98,7 +98,6 @@ public class ComentariosController {
             Integer usuarioId = Integer.valueOf(obtenerIdUsuario(new UsuarioContrasenhaDTO(mostrarComentarioReservaDTO.getNombre(),mostrarComentarioReservaDTO.getContrasena())));
             List<ListarComentariosHotelDTO> listaComentariosDto = comentariosService.mostrarComentarioUsuarioReserva(usuarioId, mostrarComentarioReservaDTO.getReservaId()).stream()
                     .map(ListarComentariosHotelDTO::new).toList();
-
             for (ListarComentariosHotelDTO l : listaComentariosDto) {
                 String nombreH = obtenerNombreApartirId(new UsuarioContrasenhaDTO(mostrarComentarioReservaDTO.getNombre(),mostrarComentarioReservaDTO.getContrasena()),l.getIdHotel());
                 l.setNombreHotel(nombreH);
@@ -140,8 +139,13 @@ public class ComentariosController {
     public String obtenerIdUsuario(UsuarioContrasenhaDTO usuarioContrasenhaDTO){
         RestTemplate restTemplate = new RestTemplate();
         String urlObtenerInfo = URLUSUARIO + "/info/nombre/{nombre}";
-        ResponseEntity<String> responseEntity = restTemplate.getForEntity(urlObtenerInfo,String.class,usuarioContrasenhaDTO.getNombre());
-        return responseEntity.getBody();
+        try {
+            ResponseEntity<String> responseEntity = restTemplate.getForEntity(urlObtenerInfo,String.class,usuarioContrasenhaDTO.getNombre());
+            return responseEntity.getBody();
+        }catch (Exception e){
+            return "No se pudo encontrar al usuario";
+        }
+
     }
 
     public Integer obtenerIdApartirNombre(String nombreHotel, UsuarioContrasenhaDTO usuarioContrasenhaDTO){

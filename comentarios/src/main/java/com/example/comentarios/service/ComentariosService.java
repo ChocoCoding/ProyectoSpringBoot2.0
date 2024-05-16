@@ -6,6 +6,7 @@ import com.example.comentarios.repository.ComentariosRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Collections;
 import java.util.List;
 
 @Service
@@ -31,7 +32,12 @@ public class ComentariosService {
     }
 
     public List<Comentarios> listarComentariosHotel(Integer hotelId){
-        return comentariosRepository.findByHotelId(hotelId);
+        try {
+            return comentariosRepository.findByHotelId(hotelId);
+        }catch (Exception e){
+            return Collections.emptyList();
+        }
+
     }
 
     public void crearComentario(CrearComentarioDTO crearComentarioDTO,Integer hotelId,Integer usuarioId){
@@ -51,12 +57,15 @@ public class ComentariosService {
     }
 
     public List<Comentarios>  mostrarComentarioUsuarioReserva(Integer usuarioId, Integer reservaID){
-        return comentariosRepository.findByUsuarioIdAndReservaId(usuarioId,reservaID);
+
+            return comentariosRepository.findByUsuarioIdAndReservaId(usuarioId,reservaID);
+
+
     }
 
     public Double puntuacionMediaHotel(int idHotel){
         try {
-            return comentariosRepository.puntuacionMediaHotel(idHotel).getUniqueMappedResult().getDouble("mediaPuntos");
+            return comentariosRepository.puntuacionMediaHotel(idHotel).getUniqueMappedResult().getDouble("media");
         }catch (NullPointerException e){
             return -1.0;
         }
@@ -65,7 +74,7 @@ public class ComentariosService {
 
     public Double mediaPuntuacionPorUsuario(int idUsuario){
         try {
-            return comentariosRepository.puntuacionesMediasUsuario(idUsuario).getUniqueMappedResult().getDouble("mediaPuntos");
+            return comentariosRepository.puntuacionesMediasUsuario(idUsuario).getUniqueMappedResult().getDouble("media");
         }catch (NullPointerException e){
             return -1.0;
         }
