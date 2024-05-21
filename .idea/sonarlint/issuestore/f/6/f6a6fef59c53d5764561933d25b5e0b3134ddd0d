@@ -1,12 +1,14 @@
 
-¡	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(õ¨¡™ùÿÿÿÿ8ÌÖÜ“ø1J$474c1e95-5d06-415a-843b-acc73b6ab55e
-œ	java:S116"URename this field "URLUSUARIO" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ñ‡û­ýÿÿÿÿ8ãÖÜ“ø1J$8fc89a07-5499-49a2-83f4-4f9a31580422
-˜	java:S116"VRename this field "URLRESERVAS" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ÿéöŒ8äÖÜ“ø1J$0f2e5f15-d5a3-4ed3-a082-e18a942b4709
+¡	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(õ¨¡™ùÿÿÿÿ8´¬Ñàù1J$87a6c070-9350-4bfd-baba-1e41fe050ff0
+œ	java:S116"URename this field "URLUSUARIO" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ñ‡û­ýÿÿÿÿ8Í¬Ñàù1J$dbb89f95-c06a-4c8c-b5c9-beebc6c711d5
+˜	java:S116"VRename this field "URLRESERVAS" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ÿéöŒ8Í¬Ñàù1J$b3918083-c62f-4ebf-b5e8-6d5ae2ea1042
 i
-java:S1170"!Make this final field static too.(ñ‡û­ýÿÿÿÿ8äÖÜ“ø1J$fb7bdc9e-74f6-45a2-a28c-eb9f412015b2
+java:S1170"!Make this final field static too.(ñ‡û­ýÿÿÿÿ8Í¬Ñàù1J$bf41d738-f18a-4adf-a56a-638de911d030
 d
-java:S1170"!Make this final field static too.(ÿéöŒ8äÖÜ“ø1J$3eb2948d-e322-41a6-bfc2-f902ff4d343f
+java:S1170"!Make this final field static too.(ÿéöŒ8Í¬Ñàù1J$efdf19e1-8c7a-4249-9a0f-eff7c50bdfb9
 …
-java:S6813"BRemove this field injection and use constructor injection instead.(êæÄÞ8äÖÜ“ø1J$5a06eb38-e181-42b7-bb3e-48a39338d9e3
+java:S6813"BRemove this field injection and use constructor injection instead.(êæÄÞ8Í¬Ñàù1J$b499b740-afcd-479b-8173-6122d963c79c
 ‹
-java:S1128"IRemove this unused import 'com.example.comentarios.entities.Comentarios'.(÷Õ“V8ùÖÜ“ø1J$685be982-479b-4368-b577-da60fa382be8
+java:S1128"IRemove this unused import 'com.example.comentarios.entities.Comentarios'.(÷Õ“V8â¬Ñàù1J$3f2913f0-4136-42da-82ef-05bfdd901572
+†
+java:S1128"CRemove this unused import 'org.springframework.stereotype.Service'.(¼º¡Ú8â¬Ñàù1J$5ce47a7b-1f6c-43cd-b5a0-0ef58010948b

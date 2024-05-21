@@ -1,12 +1,8 @@
 
-œ	java:S116"URename this field "URLUSUARIO" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ñ‡û­ıÿÿÿÿ8ï‚¼÷1J$25a3653b-43ad-48c8-81f7-cc1b6f5df080
+œ	java:S116"URename this field "URLUSUARIO" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ñ‡û­ıÿÿÿÿ8úÇ¹àù1J$b97ea5bd-dc8f-42d9-a50b-2b7b55255d0c
 i
-java:S1170"!Make this final field static too.(ñ‡û­ıÿÿÿÿ8ï‚¼÷1J$ba503a81-dad2-4820-b687-890ed6f7adcd
+java:S1170"!Make this final field static too.(ñ‡û­ıÿÿÿÿ8úÇ¹àù1J$c1dbfd24-b4d7-42b4-bdba-e4d0cbc9e8fb
 …
-java:S6813"BRemove this field injection and use constructor injection instead.(êæÄŞ8ğ‚¼÷1J$242ad0c8-3684-46e3-9c3f-ea213c455335
+java:S6813"BRemove this field injection and use constructor injection instead.(êæÄŞ8ûÇ¹àù1J$dde849c4-98d3-4569-95b6-8c21d07d4233
 z
-java:S1135G"2Complete the task associated to this TODO comment.(é‚ş…şÿÿÿÿ8õ‚¼÷1J$9d27ff02-cf5c-4c2a-b350-05b214cb6798
-i
-java:S1128"LRemove this unused import 'com.example.reservas.DTO.ReservasDTO.ReservaDTO'.(×ôºƒ8äáÎ¼÷1
-b
-java:S1128"@Remove this unused import 'org.springframework.http.HttpStatus'.(íŸ¤Šúÿÿÿÿ8äáÎ¼÷1
+java:S1135J"2Complete the task associated to this TODO comment.(é‚ş…şÿÿÿÿ8ƒÈ¹àù1J$3d46e815-d159-46f0-b567-06cdc52d97c7

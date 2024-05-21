@@ -1,12 +1,10 @@
 
-“	java:S117"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Æ—ä«8ŒÄ©ç÷1J$84a8287a-81fa-40b2-939f-c94ade972953
-—
-java:S2259M"TA "NullPointerException" could be thrown; "getUniqueMappedResult()" can return null.(åÎ™ª8ÛÚ©ç÷1J$d5339703-e3bb-490c-8d87-87061d9bb099
-–
-java:S2259D"TA "NullPointerException" could be thrown; "getUniqueMappedResult()" can return null.(•ó)8ÛÚ©ç÷1J$ca03235e-fbb6-4f98-9b1d-1022e3ce8c07
+“	java:S117"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Æ—ä«8ôó¡İù1J$63aba52e-1a47-408b-9648-20921257e94e
 …
-java:S6813"BRemove this field injection and use constructor injection instead.(êæÄŞ8†Ó¶’ø1J$b00560cf-a3ff-46fd-ad5b-312984f4aa66
+java:S6813"BRemove this field injection and use constructor injection instead.(êæÄŞ8÷ó¡İù1J$9828162a-ca24-42dd-9fd5-0f9162cca6bf
 Œ
-java:S1854"DRemove this useless assignment to local variable "listaComentarios".(ÂÇêøÿÿÿÿ8¡Ä©ç÷1J$986c9073-25d8-4ab7-932f-7d9fc522fa3a
+java:S1854"DRemove this useless assignment to local variable "listaComentarios".(ÂÇêøÿÿÿÿ8úó¡İù1J$e85c784b-92bf-45b1-bf56-03f9bedb6647
 }
-java:S1481"5Remove this unused "listaComentarios" local variable.(ÂÇêøÿÿÿÿ8¢Ä©ç÷1J$2cedb84f-0db6-4929-bb1f-8e26416d3a39
+java:S1481"5Remove this unused "listaComentarios" local variable.(ÂÇêøÿÿÿÿ8ûó¡İù1J$598525df-dcec-4f92-bdef-40d1ffc2cbf5
+‰
+java:S1126/"AReplace this if-then-else statement by a single return statement.(º•óŒûÿÿÿÿ8şó¡İù1J$6b859e86-006f-4b93-bd37-faf91147a7d6

@@ -103,3 +103,9 @@ Japigateway/src/main/java/com/example/apigateway/ApigatewayApplication.java,b\a
 Vcomentarios/src/main/java/com/example/comentarios/DTO/MostrarComentarioReservaDTO.java,6\8\6810be3d6174b8d123c7163f549c576eb8dad804
 z
 Jcomentarios/src/main/java/com/example/comentarios/DTO/ObtenerHotelDTO.java,0\2\0273fce1f3f090b552752d917d3f2744452d29a8
+9
+	README.MD,9\6\968e80af9562e09cebe594968b130076952eafe1
+…
+Ureservas/src/main/java/com/example/reservas/DTO/HabitacionDTO/CrearHabitacionDTO.java,7\a\7ab112d629e0c1fe6534632e9b232a8b4a8a7da4
+Š
+Zreservas/src/main/java/com/example/reservas/DTO/HabitacionDTO/ActualizarHabitacionDTO.java,b\c\bc455acce69d872e0eab8137accad6a9a2156297

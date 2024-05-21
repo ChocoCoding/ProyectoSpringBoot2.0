@@ -81,21 +81,4 @@ public class UsuarioController {
         boolean existe = usuarioService.checkIfExist(id);
         return ResponseEntity.ok(existe);
         }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 }

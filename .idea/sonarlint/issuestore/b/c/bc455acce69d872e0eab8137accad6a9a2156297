@@ -1,0 +1,9 @@
+
+f	java:S117"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(·ÄÚÇ
+f	java:S117"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(·ÄÚÇ
+t	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(¢ŽËüûÿÿÿÿ
+v	java:S116"\Rename this field "numero_habitacion" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(»˜ãŠûÿÿÿÿ
+m	java:S116"SRename this field "hotel_id" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(òˆïüþÿÿÿÿ
+V	java:S107"AConstructor has 8 parameters, which is greater than 7 authorized.(·ÄÚÇ
+@
+java:S1128"*Remove this unused import 'lombok.Getter'.(ùÒµÙ

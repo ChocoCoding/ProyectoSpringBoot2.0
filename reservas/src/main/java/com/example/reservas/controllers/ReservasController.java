@@ -38,11 +38,14 @@ public class ReservasController {
     @PatchMapping
     public ResponseEntity<String> cambiarEstado(@RequestBody CambiarEstadoDTO cambiarEstadoDTO){
         if (validarUsuario(new UsuarioContrasenhaDTO(cambiarEstadoDTO.getNombre(),cambiarEstadoDTO.getContrasena()))){
-            boolean cambiado = reservaService.updateEstadoById(cambiarEstadoDTO);
-            if (cambiado){
-                return ResponseEntity.ok().body("El estado se ha modificado con éxito");
-            }else return ResponseEntity.ok().body("No se ha podido realizar la reserva, comprueba el estado introducido");
+            if (reservaService.findReservaById(cambiarEstadoDTO.getReserva_id())){
+                boolean cambiado = reservaService.updateEstadoById(cambiarEstadoDTO);
+                if (cambiado){
+                    return ResponseEntity.ok().body("El estado se ha modificado con éxito");
+                }else return ResponseEntity.ok().body("No se ha podido realizar el cambio de estado, comprueba el estado introducido");
+            }else ResponseEntity.ok().body("La reserva introducida no existe");
         }else return ResponseEntity.ok().body("Usuario o contraseña incorrectos");
+        return ResponseEntity.ok().body("No se ha podido realizar el cambio de estado");
     }
 
     @GetMapping

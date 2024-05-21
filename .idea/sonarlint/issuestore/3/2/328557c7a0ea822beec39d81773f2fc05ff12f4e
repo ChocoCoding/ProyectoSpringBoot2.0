@@ -1,10 +1,10 @@
 
 ª
-java:S1192""bDefine a constant instead of duplicating this literal "Usuario o contraseÃ±a incorrectos" 4 times.(ûßš“ıÿÿÿÿ8¸‘¬ö1J$9d3bf881-49a0-402f-9cb1-f221de3cf91d
-œ	java:S116"URename this field "URLUSUARIO" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ñ‡û­ıÿÿÿÿ8Ã‘¬ö1J$7f60b5b4-2276-4f50-9fea-8882c0fbbb1f
+java:S1192""bDefine a constant instead of duplicating this literal "Usuario o contraseÃ±a incorrectos" 4 times.(ûßš“ıÿÿÿÿ8¸‘¬ö1J$38eaf8af-9d34-4eb9-9719-35ef48bbb33d
+œ	java:S116"URename this field "URLUSUARIO" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ñ‡û­ıÿÿÿÿ8Ã‘¬ö1J$b83428a3-9cc6-4bf3-a2f1-687c98aa2665
 i
-java:S1170"!Make this final field static too.(ñ‡û­ıÿÿÿÿ8Ã‘¬ö1J$91bb3572-4855-4cb7-9240-b4d8a1a5b4cd
+java:S1170"!Make this final field static too.(ñ‡û­ıÿÿÿÿ8Ã‘¬ö1J$889753c9-cb85-4f28-b9d8-37e2f71f7a6c
 z
-java:S6863 "2Set a HttpStatus code reflective of the operation.(ü²‰åúÿÿÿÿ8Û¯Œ»÷1J$5f21b21d-fb4d-4848-a76e-5637d1c67b71
+java:S6863 "2Set a HttpStatus code reflective of the operation.(ü²‰åúÿÿÿÿ8Û¯Œ»÷1J$1975e7d8-4346-4283-8af6-b68173eed3db
 c
-java:S1128"GRemove this unused import 'com.example.reservas.DTO.HotelDTO.HotelDTO'.(ğÌV8ˆ—É”ø1
+java:S1128"GRemove this unused import 'com.example.reservas.DTO.HotelDTO.HotelDTO'.(ğÌV8‹…Œàù1

@@ -10,6 +10,7 @@ import org.springframework.graphql.data.method.annotation.MutationMapping;
 import org.springframework.graphql.data.method.annotation.QueryMapping;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
 import java.util.HashMap;
@@ -33,9 +34,11 @@ public class ComentariosController {
             hotelId= obtenerIdApartirNombre(crearComentarioDTO.getNombreHotel(),new UsuarioContrasenhaDTO(crearComentarioDTO.getNombre(),crearComentarioDTO.getContrasena()));
             usuarioId= Integer.parseInt(obtenerIdUsuario(new UsuarioContrasenhaDTO(crearComentarioDTO.getNombre())));
             if (validarUsuario((new UsuarioContrasenhaDTO(crearComentarioDTO.getNombre(),
-                    crearComentarioDTO.getContrasena()))) && (checkReserva(new CheckReservaDTO(usuarioId,hotelId,crearComentarioDTO.getReservaId())))){
+                crearComentarioDTO.getContrasena()))) && (checkReserva(new CheckReservaDTO(usuarioId,hotelId,crearComentarioDTO.getReservaId())))){
+                if(!comentariosService.comprobarComentarioExiste(usuarioId,hotelId,crearComentarioDTO.getReservaId())){
                 comentariosService.crearComentario(crearComentarioDTO,hotelId,usuarioId);
                 return crearComentarioDTO;
+                }else return null;
             }return null;
 
         }catch (Exception e){

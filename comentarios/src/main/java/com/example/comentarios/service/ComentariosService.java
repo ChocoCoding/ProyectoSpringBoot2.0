@@ -40,6 +40,16 @@ public class ComentariosService {
 
     }
 
+    public boolean comprobarComentarioExiste(int usuarioId, int hotelId, int reservaId){
+
+        Comentarios comentarios = comentariosRepository.findByUsuarioIdAndHotelIdAndReservaId(usuarioId,hotelId,reservaId);
+
+        if (comentarios!=null){
+            return true;
+        }else return false;
+
+    }
+
     public void crearComentario(CrearComentarioDTO crearComentarioDTO,Integer hotelId,Integer usuarioId){
         Comentarios comentario = new Comentarios();
         comentario.setUsuarioId(usuarioId);

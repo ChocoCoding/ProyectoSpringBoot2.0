@@ -19,6 +19,8 @@ public interface ComentariosRepository extends MongoRepository<Comentarios,Strin
 
     List<Comentarios> findByUsuarioIdAndReservaId(Integer usuarioId,Integer reservaId);
 
+    Comentarios findByUsuarioIdAndHotelIdAndReservaId(int usuarioId, int hotelId, int reservaId);
+
     @Aggregation(pipeline = {"{$match: {hotelId: ?0}}","{$group: {_id: null, media: {$avg:\"$puntuacion\"}}}"})
     AggregationResults<Document> puntuacionMediaHotel(int hotelId);
 

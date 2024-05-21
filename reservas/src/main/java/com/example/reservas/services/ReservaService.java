@@ -72,6 +72,12 @@ public class ReservaService {
     if (numeroReservas>0){
         return true;
     }else return false;
+    }
 
+    public boolean findReservaById(Integer idReserva){
+        Reserva reserva = reservaRepository.findById(idReserva).orElse(null);
+        if (reserva!= null){
+            return true;
+        }else return false;
     }
 }
