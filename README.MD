@@ -442,4 +442,11 @@ También incluye la validación de usuario antes de realizar ciertas operaciones
     contrasena: "password789"
   })
     }
-  
+
+
+# Microservicio de Api Gateway
+Esta aplicación actúa como un gateway para enrutar las solicitudes a diferentes microservicios. Utiliza Spring Cloud Gateway para definir las rutas de acceso a los microservicios de usuarios, reservas y comentarios.
+
+
+# Microservicio de Eureka
+Esta aplicación actúa como un servidor Eureka, que es un servidor de registro de servicios para aplicaciones en la nube. Permite a los microservicios registrarse y descubrirse entre sí.
